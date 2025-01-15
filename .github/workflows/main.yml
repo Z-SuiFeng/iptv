@@ -2,13 +2,12 @@ name: 'Update schedule'
 
 on:
   schedule:
-    - cron: '0 22 * * *'
-    - cron: '0 10 * * *'
+    - cron: '0 06 * * *'
+    
   workflow_dispatch:
-    branches:
+    分支:
       - master
-      - dev
-      - gd
+      
 jobs:
   push:
     runs-on: ${{ matrix.operating-system }}
@@ -56,9 +55,9 @@ jobs:
       - name: Install selenium
         if: env.OPEN_DRIVER == 'True'
         run: pipenv install selenium
-      - name: Update
+      - name: 更新
         run: pipenv run dev
-      - name: Commit and push if changed
+      - name: Commit 和 push if changed
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
